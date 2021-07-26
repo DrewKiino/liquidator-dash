@@ -1,10 +1,8 @@
-import {Bar, Doughnut} from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2';
 import React, {useEffect, useState} from 'react';
 import * as Mango from '../services/Mango';
 import {Liquidation} from '../services/models/Liquidation';
 import {NumberData} from './models/NumberData';
-import {KeyValue} from './models/KeyValue';
-import Chart from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 function createChartData(data: NumberData[]) {
@@ -76,7 +74,6 @@ export function TokenLiquidationFeesChart() {
           size: 18,
         },
         formatter: (e: number) => {
-          const symbol = dataset[e];
           return `$${Math.round(e)}`;
         },
         padding: 6,
