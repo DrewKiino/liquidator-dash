@@ -23,6 +23,9 @@ export const getLiquidatorBalances = async (
     }
     const response = await axios.get(url);
     return response.data.map((e: any) => {
+      if (e.balances === null) {
+        return null;
+      }
       return {
         balances: e.balances.map((n: any) => {
           return {
@@ -49,7 +52,7 @@ export const getLiquidatorBalances = async (
         signature: e.signature,
         socializedLosses: e.socialized_losses,
       } as Liquidation;
-    });
+    }).filter((e: any) => e != null);
   } catch (error) {
     console.error(error);
     return [];
